@@ -79,7 +79,6 @@ a{
 
 .period{
   color: var(--subtext);
-  font-weight: 600;
   margin-bottom: 24px;
 }
 
@@ -104,14 +103,16 @@ hr{
 }
 
 .tag{
-  padding: 6px 12px;
+  padding: 5px 8px;
   border-radius: 999px;
-  background: rgba(65,188,137,0.12);
-  border: 1px solid rgba(65,188,137,0.22);
+  background: #b2bec3;
   font-size: 13px;
-  font-weight: 800;
-  color: #1f7a5a;
+  color: white;
   user-select: none;
+}
+
+.tag:hover {
+  background: #fdcb6e;
 }
 
 

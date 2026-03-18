@@ -37,10 +37,14 @@ $href_result = $conn->query($href_sql);
 ?>
 
 <title>ImagePix | Hyeju Portfolio</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 
 <div class="menu">
-    <div class="brand"><a href="index.html">Hyeju's Portfolio</a></div>
+    <div class="brand">
+    <a style="color: #fdcb6e" href="index.html">Hyeju's Portfolio</a>
+    </div>
     <div class="nav">
         <a href="index.html#about">About</a>
         <a href="index.html#projects">Projects</a>
@@ -51,7 +55,7 @@ $href_result = $conn->query($href_sql);
 
 <main class="container">
 
-    <a href="index.html" class="back-link">← 목록으로</a>
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> 목록으로</a>
 
     <h1 class="project-title"><?=$portfolio['title']?> – <?=$portfolio['content']?></h1>
     <p class="period">
