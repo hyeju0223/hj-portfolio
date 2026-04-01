@@ -32,7 +32,7 @@ while($row = $subject_result->fetch_assoc()){
 
 $href_sql = "SELECT * FROM href where portfolio_id = {$portfolio['id']}";
 $href_result = $conn->query($href_sql);
-
+//$href_list = $href_result->fetch_assoc();
 
 ?>
 
@@ -43,32 +43,50 @@ $href_result = $conn->query($href_sql);
 
 <div class="menu">
     <div class="brand">
-    <a style="color: #fdcb6e" href="index.html">Hyeju's Portfolio</a>
+    <a style="color: #fdcb6e" href="index.php">Hyeju's Portfolio</a>
     </div>
     <div class="nav">
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.php#about">About</a>
+        <a href="index.php#projects">Projects</a>
+        <a href="index.php#contact">Contact</a>
     </div>
 </div>
 
 
 <main class="container">
 
-    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> 목록으로</a>
+    <a href="index.php" class="back-link"><i class="fa-solid fa-arrow-left"></i> 목록으로</a>
 
-    <h1 class="project-title"><?=$portfolio['title']?> – <?=$portfolio['content']?></h1>
+    <div class="project-title"><?=$portfolio['title']?> <span class="project-content">– <?=$portfolio['content']?></span></div>
+    <div class="bar"></div>
+    <div style="display: flex; align-items: center">
     <p class="period">
         기간: <?=$portfolio['duration']?><br>
         <!--          URL: <a href="http://13.60.98.74:8081/hj/" target="_blank" rel="noopener noreferrer">-->
         <!--          http://13.60.98.74:8081/hj/-->
         <!--      </a>-->
+        <?php if($portfolio['id'] == 3) :  ?>
+        <span style="color: red">* 현재 작업중인 포트폴리오입니다. 빠른 시일내로 작업 완료하겠습니다.</span>
+        <?php endif; ?>
     </p>
+        <div style="flex: 2"></div>
+    <a href="<?=$portfolio['site_link']?>" target="_blank">
+        <div class="click">
+            <i class="fa-solid fa-link"></i> 링크
+            <span class="link-click" style="color: #fdcb6e">
+                click!
+            </span>
+        </div>
+    </a>
+    </div>
 
     <div class="tag-area">
-        <?php while($tegs = $teg_result->fetch_assoc()) : ?>
-        <span class="tag"><?=$tegs['name']?></span>
-        <?php endwhile; ?>
+        <?php         while($teg = $teg_result->fetch_assoc()) {
+            $names[] = '<span class="tag">'.$teg['name'].'</span>';
+        }
+        echo implode('<span style="margin-right: 10px">·</span>', $names);
+
+        ?>
     </div>
 
     <h2 class="section-title">요약</h2>
@@ -98,7 +116,7 @@ $href_result = $conn->query($href_sql);
     </p>
 
     <?php while ($href = $href_result->fetch_assoc()) : ?>
-    <img class="project-image" src="<?=$href['link']?>" alt="TripPlanner 메인 화면">
+    <img class="project-image" src="<?=$href['link']?>">
     <?php endwhile; ?>
 
 </main>
